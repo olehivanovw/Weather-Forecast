@@ -1,4 +1,3 @@
-// import {useState} from "react";
 import {Routes, Route} from "react-router-dom";
 import Form from "./Form.jsx";
 import Weather from "./Weather";
