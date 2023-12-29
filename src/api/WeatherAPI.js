@@ -10,8 +10,11 @@ export default class WeatherAPI {
       .then((res) => {
         if (res.ok) {
           return res.json()
+        } else {
+          return res.json()
         }
-
+      })
+      .catch(() => {
         throw new Error(errorMessage)
       })
   }
