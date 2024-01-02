@@ -1,6 +1,12 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import WeatherAPI from "../api/WeatherAPI.js";
+import {Box, Button, Typography} from "@mui/material";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import AirIcon from '@mui/icons-material/Air';
 
 export default function Weather() {
   const { city } = useParams()
@@ -27,20 +33,46 @@ export default function Weather() {
       }).catch(e => console.error(e.message))
   }, [city])
 
+
   if (weather !== null) {
+    const mainTemp = Math.round(weather.temp)
+    const maxTemp = Math.round(weather.tempMax)
+    const minTemp = Math.round(weather.tempMin)
+    const windSpeed = Math.round(weather.windSpeed)
+
+
     return (
-      <div>
-        <h1>WEATHER IN {city}</h1>
-        <p>Temperature: {weather.temp}</p>
-        <p>Discription: {weather.description}</p>
-        <p>Temperature Max: {weather.tempMax}</p>
-        <p>Temperature Min: {weather.tempMin}</p>
-        <p>Humidity: {weather.humidity}</p>
-        <p>Wind speed: {weather.windSpeed}</p>
+      <Box sx={{textAlign: 'center'}}>
+        <Box sx={{mb: 4}}>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mb: 2}}>
+            <LocationOnIcon></LocationOnIcon>
+            <Typography variant="h5">{city}</Typography>
+          </Box>
+          <Typography variant="h1" sx={{mb: 2}}>{mainTemp}°</Typography>
+          <Typography variant="body1">{weather.description}</Typography>
+        </Box>
+        <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3, mb: 4}}>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
+            <WbSunnyIcon></WbSunnyIcon>
+            <Typography variant="body1">{maxTemp}°</Typography>
+          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
+            <AcUnitIcon></AcUnitIcon>
+            <Typography variant="body1">{minTemp}°</Typography>
+          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
+            <WaterDropIcon></WaterDropIcon>
+            <Typography variant="body1">{weather.humidity}%</Typography>
+          </Box>
+          <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1}}>
+            <AirIcon></AirIcon>
+            <Typography variant="body1">{windSpeed} m/c</Typography>
+          </Box>
+        </Box>
         <Link to='/'>
-          <button>BACK TO SEARCH</button>
+          <Button variant="outlined">Back to search</Button>
         </Link>
-      </div>
+      </Box>
     )
   }
 
