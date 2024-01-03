@@ -1,12 +1,13 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import WeatherAPI from "../api/WeatherAPI.js";
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button, Paper, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import AirIcon from '@mui/icons-material/Air';
+import WeatherImg from "./WeatherImg";
 
 export default function Weather() {
   const { city } = useParams()
@@ -40,14 +41,14 @@ export default function Weather() {
     const minTemp = Math.round(weather.tempMin)
     const windSpeed = Math.round(weather.windSpeed)
 
-
     return (
-      <Box sx={{textAlign: 'center'}}>
+      <Box component={Paper} elevation={3} sx={{textAlign: 'center', padding: 4, maxWidth: '320px', borderRadius: 4,}}>
         <Box sx={{mb: 4}}>
-          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mb: 2}}>
+          <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mb: 3}}>
             <LocationOnIcon></LocationOnIcon>
             <Typography variant="h5">{city}</Typography>
           </Box>
+          <WeatherImg icon={weather}></WeatherImg>
           <Typography variant="h1" sx={{mb: 2}}>{mainTemp}°</Typography>
           <Typography variant="body1">{weather.description}</Typography>
         </Box>
