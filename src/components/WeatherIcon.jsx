@@ -7,7 +7,7 @@ import snowImg from "../assets/icons/snow-icon.png";
 import stormImg from "../assets/icons/storm-icon.png";
 import smoggyImg from "../assets/icons/smoggy-icon.png";
 
-export default function WeatherImg({icon}) {
+export default function WeatherIcon({icon}) {
   let weatherIcon
 
   switch (icon.weatherName) {

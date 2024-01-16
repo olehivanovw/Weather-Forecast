@@ -7,20 +7,26 @@ import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import AirIcon from '@mui/icons-material/Air';
-import WeatherImg from "./WeatherImg";
+import WeatherIcon from "./WeatherIcon.jsx";
+import WeatherImage from "./WeatherImage";
+
+const Wrapper = styled(Container)(({ theme }) => ({
+  minHeight: '100vh',
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: '32px',
+  [theme.breakpoints.down('lg')]: {
+    flexDirection: 'column',
+  },
+}));
 
 const styles = {
-  container: {
-    minHeight: '100vh',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 4
-  },
   mainBox: {
     textAlign: 'center',
     padding: 4,
     maxWidth: '320px',
+    maxHeight: '596px',
     borderRadius: 4
   },
   mainInfo: {
@@ -83,14 +89,14 @@ export default function Weather() {
     const windSpeed = Math.round(weather.windSpeed)
 
     return (
-      <Container maxWidth="xl" sx={styles.container}>
+      <Wrapper maxWidth="xl">
         <Box component={Paper} elevation={3} sx={styles.mainBox}>
             <Box sx={styles.mainInfo}>
               <Box sx={styles.mainInfoLocation}>
                 <LocationOnIcon></LocationOnIcon>
                 <Typography variant="h5">{city}</Typography>
               </Box>
-              <WeatherImg icon={weather}></WeatherImg>
+              <WeatherIcon icon={weather}></WeatherIcon>
               <Typography variant="h1" sx={styles.mainInfoTemp}>{mainTemp}°</Typography>
               <Typography variant="body1">{weather.description}</Typography>
             </Box>
@@ -116,7 +122,8 @@ export default function Weather() {
               <Button variant="outlined">Back to search</Button>
             </Link>
         </Box>
-      </Container>
+        <WeatherImage name={weather}></WeatherImage>
+      </Wrapper>
     )
   }
 }
