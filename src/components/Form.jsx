@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom";
-import {Typography, Button, Box, TextField, Paper, Container, styled} from "@mui/material";
+import {Typography, Button, Box, TextField, Paper, Container} from "@mui/material";
 import backImgMain from "../assets/backImgMain.jpg"
 
 const styles = {

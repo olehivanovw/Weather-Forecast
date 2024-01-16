@@ -1,11 +1,11 @@
 import {Box} from "@mui/material";
-import clearImg from "../assets/clear-icon.png";
-import cloudsImg from "../assets/clouds-icon.png";
-import drizzleImg from "../assets/drizzle-icon.png";
-import rainImg from "../assets/rain-icon.png";
-import snowImg from "../assets/snow-icon.png";
-import stormImg from "../assets/storm-icon.png";
-import smoggyImg from "../assets/smoggy-icon.png";
+import clearImg from "../assets/icons/clear-icon.png";
+import cloudsImg from "../assets/icons/clouds-icon.png";
+import drizzleImg from "../assets/icons/drizzle-icon.png";
+import rainImg from "../assets/icons/rain-icon.png";
+import snowImg from "../assets/icons/snow-icon.png";
+import stormImg from "../assets/icons/storm-icon.png";
+import smoggyImg from "../assets/icons/smoggy-icon.png";
 
 export default function WeatherImg({icon}) {
   let weatherIcon
@@ -35,6 +35,6 @@ export default function WeatherImg({icon}) {
 
 
   return (
-    <Box component='img' src={weatherIcon} alt="weather-icon" sx={{width: '60%', mb: 1}}></Box>
+    <Box component='img' src={weatherIcon} alt="weather-icon" sx={{width: '60%', mb: 1, filter: "drop-shadow(0 0 10px rgba(0,0,0,0.3))" }}></Box>
   )
 }
