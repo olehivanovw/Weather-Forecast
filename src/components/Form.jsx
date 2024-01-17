@@ -1,6 +1,19 @@
 import {useNavigate} from "react-router-dom";
-import {Typography, Button, Box, TextField, Paper, Container} from "@mui/material";
+import {Typography, Button, Box, TextField, Paper, Container, styled} from "@mui/material";
 import backImgMain from "../assets/backImgMain.jpg"
+
+const Wrapper = styled(Paper)(({ theme }) => ({
+  textAlign: 'center',
+  padding: "48px 64px 48px 64px",
+  borderRadius: "8px",
+  backgroundColor: "rgba(232,232,232,0.4)",
+  [theme.breakpoints.down('lg')]: {
+    padding: "32px 48px 32px 48px",
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: "24px",
+  },
+}));
 
 const styles = {
   container: {
@@ -11,15 +24,6 @@ const styles = {
     backgroundImage: `url(${backImgMain})`,
     backgroundSize: 'cover',
     backgroundPosition: 'top',
-  },
-  paperBox: {
-    textAlign: 'center',
-    paddingTop: 6,
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingBottom: 6,
-    borderRadius: 2,
-    bgcolor: 'rgba(232,232,232,0.4)'
   },
   typography: {
     mb: 4,
@@ -54,13 +58,13 @@ export default function Form() {
 
   return (
     <Container maxWidth="xl" sx={styles.container}>
-      <Box component={Paper} elevation={3} sx={styles.paperBox}>
+      <Wrapper elevation={3}>
         <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
         <Box component="form" onSubmit={handleSearch} sx={styles.formBox}>
           <TextField label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField}/>
           <Button variant="contained" type='submit' sx={styles.button}>Search</Button>
         </Box>
-      </Box>
+      </Wrapper>
     </Container>
   )
 }
