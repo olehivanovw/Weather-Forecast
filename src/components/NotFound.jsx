@@ -18,6 +18,11 @@ const styles = {
   text: {
     mb: 2,
   },
+  image: {
+    maxWidth: '30%',
+    minWidth: '300px',
+    filter: "drop-shadow(0 0 10px rgba(0,0,0,0.3))",
+  }
 }
 
 export default function NotFound() {
@@ -31,7 +36,7 @@ export default function NotFound() {
           <Button variant="outlined">Back to search</Button>
         </Link>
       </Box>
-      <Box component='img' src={errorImg} alt="error-404" sx={{maxWidth: '30%', minWidth: '300px'}}></Box>
+      <Box component='img' src={errorImg} alt="error-404" sx={styles.image}></Box>
     </Wrapper>
   )
 }

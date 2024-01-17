@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import WeatherAPI from "../api/WeatherAPI.js";
-import {Box, Button, Container, Grid, Paper, styled, Typography} from "@mui/material";
+import {Box, Button, Container, Paper, styled, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -9,6 +9,7 @@ import WaterDropIcon from '@mui/icons-material/WaterDrop';
 import AirIcon from '@mui/icons-material/Air';
 import WeatherIcon from "./WeatherIcon.jsx";
 import WeatherImage from "./WeatherImage";
+import Load from "./Load.jsx";
 
 const Wrapper = styled(Container)(({ theme }) => ({
   minHeight: '100vh',
@@ -81,6 +82,11 @@ export default function Weather() {
       }).catch(e => console.error(e.message))
   }, [city])
 
+  if (!weather) {
+    return (
+      <Load></Load>
+    )
+  }
 
   if (weather !== null) {
     const mainTemp = Math.round(weather.temp)
