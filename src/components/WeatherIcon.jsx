@@ -1,11 +1,11 @@
 import {Box} from "@mui/material";
-import clearImg from "../assets/icons/clear-icon.png";
-import cloudsImg from "../assets/icons/clouds-icon.png";
-import drizzleImg from "../assets/icons/drizzle-icon.png";
-import rainImg from "../assets/icons/rain-icon.png";
-import snowImg from "../assets/icons/snow-icon.png";
-import stormImg from "../assets/icons/storm-icon.png";
-import smoggyImg from "../assets/icons/smoggy-icon.png";
+import clearImg from "../assets/icons/clear-icon-min.png";
+import cloudsImg from "../assets/icons/clouds-icon-min.png";
+import drizzleImg from "../assets/icons/drizzle-icon-min.png";
+import rainImg from "../assets/icons/rain-icon-min.png";
+import snowImg from "../assets/icons/snow-icon-min.png";
+import stormImg from "../assets/icons/storm-icon-min.png";
+import smoggyImg from "../assets/icons/smoggy-icon-min.png";
 
 export default function WeatherIcon({icon}) {
   let weatherIcon

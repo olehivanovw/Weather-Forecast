@@ -1,11 +1,11 @@
 import {Box, styled} from "@mui/material";
-import clearImg from "../assets/image/sun.jpg";
-import cloudsImg from "../assets/image/clouds.jpg";
-import drizzleImg from "../assets/image/drizzle.jpg";
-import rainImg from "../assets/image/rain.jpg";
-import snowImg from "../assets/image/snow.jpg";
-import stormImg from "../assets/image/storm.jpg";
-import smoggyImg from "../assets/image/smoggy.jpg";
+import clearImg from "../assets/image/sun-min.jpg";
+import cloudsImg from "../assets/image/clouds-min.jpg";
+import drizzleImg from "../assets/image/drizzle-min.jpg";
+import rainImg from "../assets/image/rain-min.jpg";
+import snowImg from "../assets/image/snow-min.jpg";
+import stormImg from "../assets/image/storm-min.jpg";
+import smoggyImg from "../assets/image/smoggy-min.jpg";
 
 export default function WeatherImage({name}) {
   let weatherImage

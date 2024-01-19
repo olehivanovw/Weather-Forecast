@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {Typography, Box, Button, styled} from "@mui/material";
-import errorImg from "../assets/404-error.png";
+import errorImg from "../assets/404-error-min.png";
 
 const Wrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
