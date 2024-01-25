@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import WeatherAPI from "../api/WeatherAPI.js";
+// import WeatherAPI from "../api/WeatherAPI.js";
+import {useGetAxios} from '../api/WeatherAxiosAPI.js'
 import {Box, Button, Container, Paper, styled, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
@@ -62,10 +63,11 @@ export default function Weather() {
   const navigate = useNavigate()
   const [weather, setWeather] = useState(null)
 
+  // Використання більш простої ліби Axios для запросів на сервер,
   useEffect(() => {
-    WeatherAPI.getDataWeather(city)
+    useGetAxios(city)
       .then((newData) => {
-        if (newData.cod === 200) {
+        if (newData !== undefined) {
           setWeather({
             location: newData.name,
             weatherName: newData.weather[0].main,
@@ -79,8 +81,29 @@ export default function Weather() {
         } else {
           navigate('/*')
         }
-      }).catch(e => console.error(e.message))
+      })
   }, [city])
+
+  // Використання методів API які були показані в IT школі
+  // useEffect(() => {
+  //   WeatherAPI.getDataWeather(city)
+  //     .then((newData) => {
+  //       if (newData.cod === 200) {
+  //         setWeather({
+  //           location: newData.name,
+  //           weatherName: newData.weather[0].main,
+  //           description: newData.weather[0].description,
+  //           temp: newData.main.temp,
+  //           tempMax: newData.main.temp_max,
+  //           tempMin: newData.main.temp_min,
+  //           humidity: newData.main.humidity,
+  //           windSpeed: newData.wind.speed,
+  //         })
+  //       } else {
+  //         navigate('/*')
+  //       }
+  //     }).catch(e => console.error(e.message))
+  // }, [city])
 
   if (!weather) {
     return (
@@ -88,7 +111,7 @@ export default function Weather() {
     )
   }
 
-  if (weather !== null) {
+  if (weather) {
     const mainTemp = Math.round(weather.temp)
     const maxTemp = Math.round(weather.tempMax)
     const minTemp = Math.round(weather.tempMin)
