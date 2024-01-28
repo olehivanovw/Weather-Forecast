@@ -2,6 +2,8 @@ import {useNavigate} from "react-router-dom";
 import {Typography, Box, TextField, Paper, Container, styled} from "@mui/material";
 import backImgMain from "../assets/backImgMain.jpg"
 import { ButtonComponent } from "./ui/ButtonComponent.jsx"
+import { InputComponent } from './ui/InputComponent.jsx'
+import { FormComponent } from './ui/FormComponent.jsx'
 
 const Wrapper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
@@ -65,10 +67,10 @@ export default function Form() {
     <Container maxWidth="xl" sx={styles.container}>
       <Wrapper elevation={3}>
         <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
-        <Box component="form" onSubmit={handleSearch} sx={styles.formBox}>
-          <TextField label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField}/>
+        <FormComponent component="form" onSubmit={handleSearch} sx={styles.formBox}>
+          <InputComponent label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField} />
           <ButtonComponent variant='contained' type='submit' sx={styles.button}>Search</ButtonComponent>
-        </Box>
+        </FormComponent>
       </Wrapper>
     </Container>
   )
