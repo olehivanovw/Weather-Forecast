@@ -11,6 +11,7 @@ import AirIcon from '@mui/icons-material/Air';
 import WeatherIcon from "./WeatherIcon.jsx";
 import WeatherImage from "./WeatherImage";
 import Load from "./Load.jsx";
+import { ButtonComponent } from './ui/ButtonComponent.jsx'
 
 const Wrapper = styled(Container)(({ theme }) => ({
   minHeight: '100vh',
@@ -84,7 +85,7 @@ export default function Weather() {
       })
   }, [city])
 
-  // Використання методів API які були показані в IT школі
+  // Використання методів API які були показані в IT школі через сlass API
   // useEffect(() => {
   //   WeatherAPI.getDataWeather(city)
   //     .then((newData) => {
@@ -120,36 +121,36 @@ export default function Weather() {
     return (
       <Wrapper maxWidth="xl">
         <Box component={Paper} elevation={3} sx={styles.mainBox}>
-            <Box sx={styles.mainInfo}>
-              <Box sx={styles.mainInfoLocation}>
-                <LocationOnIcon></LocationOnIcon>
-                <Typography variant="h5">{city}</Typography>
-              </Box>
-              <WeatherIcon icon={weather}></WeatherIcon>
-              <Typography variant="h1" sx={styles.mainInfoTemp}>{mainTemp}°</Typography>
-              <Typography variant="body1">{weather.description}</Typography>
+          <Box sx={styles.mainInfo}>
+            <Box sx={styles.mainInfoLocation}>
+              <LocationOnIcon></LocationOnIcon>
+              <Typography variant="h5">{city}</Typography>
             </Box>
-            <Box sx={styles.subInfo}>
-              <Box sx={styles.subInfoData}>
-                <WbSunnyIcon></WbSunnyIcon>
-                <Typography variant="body1">{maxTemp}°</Typography>
-              </Box>
-              <Box sx={styles.subInfoData}>
-                <AcUnitIcon></AcUnitIcon>
-                <Typography variant="body1">{minTemp}°</Typography>
-              </Box>
-              <Box sx={styles.subInfoData}>
-                <WaterDropIcon></WaterDropIcon>
-                <Typography variant="body1">{weather.humidity}%</Typography>
-              </Box>
-              <Box sx={styles.subInfoData}>
-                <AirIcon></AirIcon>
-                <Typography variant="body1">{windSpeed} m/c</Typography>
-              </Box>
+            <WeatherIcon icon={weather}></WeatherIcon>
+            <Typography variant="h1" sx={styles.mainInfoTemp}>{mainTemp}°</Typography>
+            <Typography variant="body1">{weather.description}</Typography>
+          </Box>
+          <Box sx={styles.subInfo}>
+            <Box sx={styles.subInfoData}>
+              <WbSunnyIcon></WbSunnyIcon>
+              <Typography variant="body1">{maxTemp}°</Typography>
             </Box>
-            <Link to='/'>
-              <Button variant="outlined">Back to search</Button>
-            </Link>
+            <Box sx={styles.subInfoData}>
+              <AcUnitIcon></AcUnitIcon>
+              <Typography variant="body1">{minTemp}°</Typography>
+            </Box>
+            <Box sx={styles.subInfoData}>
+              <WaterDropIcon></WaterDropIcon>
+              <Typography variant="body1">{weather.humidity}%</Typography>
+            </Box>
+            <Box sx={styles.subInfoData}>
+              <AirIcon></AirIcon>
+              <Typography variant="body1">{windSpeed} m/c</Typography>
+            </Box>
+          </Box>
+          <Link to='/'>
+            <ButtonComponent variant="outlined">Back to search</ButtonComponent>
+          </Link>
         </Box>
         <WeatherImage name={weather}></WeatherImage>
       </Wrapper>

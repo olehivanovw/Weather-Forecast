@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {Typography, Box, Button, styled} from "@mui/material";
 import errorImg from "../assets/404-error-min.png";
+import { ButtonComponent } from './ui/ButtonComponent.jsx'
 
 const Wrapper = styled(Box)(({ theme }) => ({
   padding: theme.spacing(1),
@@ -33,7 +34,7 @@ export default function NotFound() {
         <Typography variant="h4" sx={styles.text}>Page not found!</Typography>
         <Typography variant="body2" sx={styles.text}>We're sorry, but the page you requested cannot be found.</Typography>
         <Link to='/'>
-          <Button variant="outlined">Back to search</Button>
+          <ButtonComponent variant='outlined'>Back to search</ButtonComponent>
         </Link>
       </Box>
       <Box component='img' src={errorImg} alt="error-404" sx={styles.image}></Box>
