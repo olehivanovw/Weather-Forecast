@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
-import {Typography, Button, Box, TextField, Paper, Container, styled} from "@mui/material";
+import {Typography, Box, TextField, Paper, Container, styled} from "@mui/material";
 import backImgMain from "../assets/backImgMain.jpg"
+import { ButtonComponent } from "./ui/ButtonComponent.jsx"
 
 const Wrapper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
@@ -53,7 +54,11 @@ export default function Form() {
 
     const newCity = e.target.inpCity.value.trim()
 
-    navigate(`/weather/${newCity}`)
+    if (newCity.length !== 0) {
+      navigate(`/weather/${newCity}`)
+    } else {
+      navigate('/*')
+    }
   }
 
   return (
@@ -62,7 +67,7 @@ export default function Form() {
         <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
         <Box component="form" onSubmit={handleSearch} sx={styles.formBox}>
           <TextField label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField}/>
-          <Button variant="contained" type='submit' sx={styles.button}>Search</Button>
+          <ButtonComponent variant='contained' type='submit' sx={styles.button}>Search</ButtonComponent>
         </Box>
       </Wrapper>
     </Container>
