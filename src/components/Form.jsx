@@ -1,9 +1,10 @@
-import {useNavigate} from "react-router-dom";
-import {Typography, Box, TextField, Paper, Container, styled} from "@mui/material";
+import { Link, useNavigate } from 'react-router-dom'
+import { Typography, Paper, Container, styled, AppBar, Toolbar, Box } from '@mui/material'
 import backImgMain from "../assets/backImgMain.jpg"
 import { ButtonComponent } from "./ui/ButtonComponent.jsx"
 import { InputComponent } from './ui/InputComponent.jsx'
 import { FormComponent } from './ui/FormComponent.jsx'
+import logoImg from '../assets/weatherLogo.svg'
 
 const Wrapper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
@@ -19,14 +20,30 @@ const Wrapper = styled(Paper)(({ theme }) => ({
 }));
 
 const styles = {
-  container: {
+  containerWrap: {
     minHeight: '100vh',
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    minWidth: '100%',
     backgroundImage: `url(${backImgMain})`,
     backgroundSize: 'cover',
     backgroundPosition: 'top',
+  },
+  navbarWrap: {
+    display: "flex",
+    justifyContent: "center",
+    minHeight: '90px',
+    backgroundColor: "rgba(232,232,232,0.4)",
+    borderRadius: "0 0 8px 8px"
+  },
+  navbarBox: {
+    display: "flex",
+    alignItems: "center",
+    gap: 1,
+  },
+  containerForm: {
+    minHeight: "90vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   typography: {
     mb: 4,
@@ -64,14 +81,35 @@ export default function Form() {
   }
 
   return (
-    <Container maxWidth="xl" sx={styles.container}>
-      <Wrapper elevation={3}>
-        <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
-        <FormComponent component="form" onSubmit={handleSearch} sx={styles.formBox}>
-          <InputComponent label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField} />
-          <ButtonComponent variant='contained' type='submit' sx={styles.button}>Search</ButtonComponent>
-        </FormComponent>
-      </Wrapper>
+    <Container sx={styles.containerWrap}>
+      <Container maxWidth="xl">
+
+        <AppBar position="static" sx={styles.navbarWrap}>
+          <Toolbar sx={{display: "flex", justifyContent: "space-between",}}>
+            <Box sx={styles.navbarBox}>
+              <Link to='/'>
+                <Box component='img' src={logoImg} alt="logo" sx={styles.image}></Box>
+              </Link>
+                <Typography variant="h6" sx={{color: "#000", fontWeight: 'bold'}}>WFR</Typography>
+            </Box>
+            <Box sx={styles.navbarBox}>
+              <ButtonComponent variant='outlined'>EN</ButtonComponent>
+              <ButtonComponent variant='outlined'>UK</ButtonComponent>
+            </Box>
+          </Toolbar>
+        </AppBar>
+
+        <Container sx={styles.containerForm}>
+          <Wrapper elevation={3}>
+            <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
+            <FormComponent component="form" onSubmit={handleSearch} sx={styles.formBox}>
+              <InputComponent label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField} />
+              <ButtonComponent variant='contained' type='submit' sx={styles.button}>Search</ButtonComponent>
+            </FormComponent>
+          </Wrapper>
+        </Container>
+
+      </Container>
     </Container>
   )
 }
