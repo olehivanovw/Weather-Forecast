@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 // import WeatherAPI from "../api/WeatherAPI.js";
 import {useGetAxios} from '../api/WeatherAxiosAPI.js'
-import {Box, Button, Container, Paper, styled, Typography} from "@mui/material";
+import {Box, Container, Paper, styled, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';

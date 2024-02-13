@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {Typography, Box, Button, styled} from "@mui/material";
+import {Typography, Box, styled} from "@mui/material";
 import errorImg from "../assets/404-error-min.png";
 import { ButtonComponent } from './ui/ButtonComponent.jsx'
 import { useTranslation } from 'react-i18next'
