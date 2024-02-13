@@ -1,4 +1,6 @@
 import {Box, CircularProgress, Typography} from "@mui/material";
+import { useTranslation } from 'react-i18next'
+import '../feature/i18n'
 
 const styles = {
   loadBox: {
@@ -12,10 +14,14 @@ const styles = {
 }
 
 export default function Load() {
+  const { t } = useTranslation()
+
   return (
     <Box sx={styles.loadBox}>
       <CircularProgress size={100}/>
-      <Typography variant="h4">Please Wait...</Typography>
+      <Typography variant="h4">
+        {t("load")}
+      </Typography>
     </Box>
   )
 }

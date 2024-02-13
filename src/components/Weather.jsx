@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 // import WeatherAPI from "../api/WeatherAPI.js";
 import {useGetAxios} from '../api/WeatherAxiosAPI.js'
-import {Box, Button, Container, Paper, styled, Typography} from "@mui/material";
+import {Box, Container, Paper, styled, Typography} from "@mui/material";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
@@ -12,6 +12,8 @@ import WeatherIcon from "./WeatherIcon.jsx";
 import WeatherImage from "./WeatherImage";
 import Load from "./Load.jsx";
 import { ButtonComponent } from './ui/ButtonComponent.jsx'
+import { useTranslation } from 'react-i18next'
+import '../feature/i18n'
 
 const Wrapper = styled(Container)(({ theme }) => ({
   minHeight: '100vh',
@@ -63,10 +65,11 @@ export default function Weather() {
   const { city } = useParams()
   const navigate = useNavigate()
   const [weather, setWeather] = useState(null)
+  const { t, i18n } = useTranslation()
 
   // Використання більш простої ліби Axios для запросів на сервер,
   useEffect(() => {
-    useGetAxios(city)
+    useGetAxios(city, i18n.language)
       .then((newData) => {
         if (newData !== undefined) {
           setWeather({
@@ -145,11 +148,13 @@ export default function Weather() {
             </Box>
             <Box sx={styles.subInfoData}>
               <AirIcon></AirIcon>
-              <Typography variant="body1">{windSpeed} m/c</Typography>
+              <Typography variant="body1">{t("speed", {speed: windSpeed})}</Typography>
             </Box>
           </Box>
           <Link to='/'>
-            <ButtonComponent variant="outlined">Back to search</ButtonComponent>
+            <ButtonComponent variant="outlined">
+              {t("button.back")}
+            </ButtonComponent>
           </Link>
         </Box>
         <WeatherImage name={weather}></WeatherImage>
