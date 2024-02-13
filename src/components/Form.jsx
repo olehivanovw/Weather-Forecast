@@ -5,6 +5,9 @@ import { ButtonComponent } from "./ui/ButtonComponent.jsx"
 import { InputComponent } from './ui/InputComponent.jsx'
 import { FormComponent } from './ui/FormComponent.jsx'
 import logoImg from '../assets/weatherLogo.svg'
+import '../feature/i18n'
+import { useTranslation } from 'react-i18next'
+import LANGS from '../feature/i18n/constans.js'
 
 const Wrapper = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
@@ -40,7 +43,7 @@ const styles = {
     gap: 1,
   },
   containerForm: {
-    minHeight: "90vh",
+    minHeight: "80vh",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -67,6 +70,7 @@ const styles = {
 
 export default function Form() {
   const navigate = useNavigate()
+  const { t, i18n } = useTranslation()
 
   const handleSearch = (e) => {
     e.preventDefault()
@@ -80,6 +84,14 @@ export default function Form() {
     }
   }
 
+  const onBtnEnClick = () => {
+    i18n.changeLanguage(LANGS.EN)
+  }
+
+  const onBtnUkClick = () => {
+    i18n.changeLanguage(LANGS.UK)
+  }
+
   return (
     <Container sx={styles.containerWrap}>
       <Container maxWidth="xl">
@@ -90,22 +102,54 @@ export default function Form() {
               <Link to='/'>
                 <Box component='img' src={logoImg} alt="logo" sx={styles.image}></Box>
               </Link>
-                <Typography variant="h6" sx={{color: "#000", fontWeight: 'bold'}}>WFR</Typography>
+                <Typography variant="h6" sx={{color: "#000", fontWeight: 'bold'}}>
+                  {t("logo")}
+                </Typography>
             </Box>
+
             <Box sx={styles.navbarBox}>
-              <ButtonComponent variant='outlined'>EN</ButtonComponent>
-              <ButtonComponent variant='outlined'>UK</ButtonComponent>
+              <ButtonComponent
+                variant='outlined'
+                onClick={onBtnEnClick}
+                disabled={i18n.language === 'en'}
+              >
+                {t("button.lang.en")}
+              </ButtonComponent>
+              <ButtonComponent
+                variant='outlined'
+                onClick={onBtnUkClick}
+                disabled={i18n.language === 'uk'}
+              >
+                {t("button.lang.uk")}
+              </ButtonComponent>
             </Box>
           </Toolbar>
         </AppBar>
 
         <Container sx={styles.containerForm}>
           <Wrapper elevation={3}>
-            <Typography variant="h1" sx={styles.typography}>Weather Forecast</Typography>
+            <Typography variant="h1" sx={styles.typography}>
+              {t("headingMain")}
+            </Typography>
             <FormComponent component="form" onSubmit={handleSearch} sx={styles.formBox}>
-              <InputComponent label="Enter city" variant="outlined" name='inpCity' size="small" autoComplete="off" sx={styles.textField} />
-              <ButtonComponent variant='contained' type='submit' sx={styles.button}>Search</ButtonComponent>
+              <InputComponent
+                label={t("inputPlaceholder")}
+                variant="outlined"
+                name='inpCity'
+                size="small"
+                autoComplete="off"
+                sx={styles.textField} />
+              <ButtonComponent
+                variant='contained'
+                type='submit'
+                sx={styles.button}
+              >
+                {t("button.search")}
+              </ButtonComponent>
             </FormComponent>
+            <Typography sx={{mt: 4, textDecoration: 'underline'}}>
+              {t("rulesSearch")}
+            </Typography>
           </Wrapper>
         </Container>
 

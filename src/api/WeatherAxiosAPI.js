@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const useGetAxios = (city) => {
-  return axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5d0af8fa4adf0b3712075e399123d075&units=metric`)
+export const useGetAxios = (city, lang) => {
+  return axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5d0af8fa4adf0b3712075e399123d075&units=metric&lang=${lang}`)
     .then((res) => {
       return res.data
     })
